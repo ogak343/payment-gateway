@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: service
+  datasource:
+    url: jdbc:postgresql://service-database:5432/service_db
+    username: service
+    password: service
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    url: jdbc:postgresql://service-database:5432/service_db
+    user: service
+    password: service
+    change-log: classpath:db/migration.xml
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+jwt:
+  secret: 946a2edf6e5d8f7a35e7a00d1f853bc1cc622de06794f8d9adf833e76db1b7118e23b7
+
+feign:
+  clients:
+    card:
+      name: card-service
+      url: http://card-service:8080
+server:
+  port: 8080

@@ -1,0 +1,24 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="2024_06_09-1" author="Ogabek">
+        <sql>
+            CREATE TABLE card
+            (
+                card_token          UUID PRIMARY KEY,
+                card_number         VARCHAR NOT NULL,
+                expiry_date         VARCHAR NOT NULL,
+                notification_number VARCHAR NOT NULL,
+                processing_type     VARCHAR NOT NULL,
+                card_holder_name    VARCHAR NOT NULL,
+                balance             BIGINT  NOT NULL
+            );
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://card-database:5432/card_db
+    username: card
+    password: card
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    url: jdbc:postgresql://card-database:5432/card_db
+    user: card
+    password: card
+    change-log: classpath:db/migration.xml
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+jwt:
+  secret: 946a2edf6e5d8f7a35e7a00d1f853bc1cc622de06794f8d9adf833e76db1b7118e23b7
+
+server:
+  port: 8080

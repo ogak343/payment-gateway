@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="2024_06_09-1" author="Ogabek">
+        <sql>
+            create table service
+            (
+                id              bigserial primary key,
+                name            varchar   not null,
+                description     varchar,
+                processing_type varchar   not null,
+                service_type    varchar   not null,
+                min_amount      bigint    not null check ( min_amount >= 0 ),
+                max_amount      bigint    not null check ( max_amount > 0 ),
+                created_at      timestamp not null,
+                deleted_at      timestamp
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2024_06_09_2" author="Ogabek">
+        <sql>
+            create sequence service_id_sequence start with 1 increment by 1 cache 1;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

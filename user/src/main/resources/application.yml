@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: user
+  datasource:
+    url: jdbc:postgresql://user-database:5432/user_db
+    username: user
+    password: user
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    url: jdbc:postgresql://user-database:5432/user_db
+    user: user
+    password: user
+    change-log: classpath:db/migration.xml
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+jwt:
+  secret: 946a2edf6e5d8f7a35e7a00d1f853bc1cc622de06794f8d9adf833e76db1b7118e23b7 #just unpredictable string
+  access: 1800000
+
+feign:
+  clients:
+    service:
+      name: service-service
+      url: http://service-service:8080
+    card:
+      name: card-service
+      url: http://card-service:8080
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        web: debug
+        cloud:
+          openfeign: debug
+        http: debug
+    feign: debug
+    com.example.user.service: DEBUG
+server:
+  port: 8080

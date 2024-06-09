@@ -1,0 +1,38 @@
+version: '2.0'
+
+services:
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name:
+      service-service
+    ports:
+      - "8081:8080"
+    depends_on:
+      - service-database
+    networks:
+      - service-network
+      - microservices
+
+  service-database:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: service_db
+      POSTGRES_USER: service
+      POSTGRES_PASSWORD: service
+
+    volumes:
+      - PG_VOLUME:/var/lib/postgresql/data
+    networks:
+      service-network:
+    ports:
+      - "5433:5432"
+
+volumes:
+  PG_VOLUME:
+
+networks:
+  service-network:
+  microservices:
+    external: true

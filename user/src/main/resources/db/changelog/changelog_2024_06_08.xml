@@ -1,0 +1,48 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="2024_06_08-1" author="Ogabek">
+        <sql>
+            create table users (
+                id bigserial primary key ,
+                firstname varchar,
+                lastname varchar,
+                password varchar not null,
+                verified boolean not null,
+                phone_number varchar,
+                created_at timestamp not null,
+                deleted_at timestamp,
+                role varchar not null
+            );
+        </sql>
+
+        <sql>
+            create table otp (
+                id bigserial primary key,
+                created_at timestamp not null,
+                expired_at timestamp not null,
+                number varchar not null,
+                code int not null
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2024_06_08-2" author="Ogabek">
+        <sql>
+            create sequence user_id_sequence start with 1 increment by 1 cache 1;
+            create sequence otp_id_sequence start with 1 increment by 1 cache 1;
+        </sql>
+    </changeSet>
+
+    <changeSet id="2024-06-09-3" author="Ogabek">
+        <sql>
+            insert into users (firstname, lastname, password, verified, phone_number, created_at, role )
+            values ('Admin', 'Admin', 'ADMIN123', true, '998900000000', now(), 'ADMIN')
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
